@@ -3,6 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\HttpApi\LoginController;
+use App\HttpApi\RegisterController;
+use App\Http\Api\LogoutController;
+use App\Http\HomeController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+ Route::namespace('api')->group(function () {
+    Route::post('/register', 'RegisterController')->name('register');
+    Route::post('/login', 'LoginController')->name('login');
+    Route::post('/logout', 'LogoutController')->name('logout');
 });

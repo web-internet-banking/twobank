@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,16 +15,43 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/login', function () {
     return view('login');
 });
-Route::get('/saldo', function () {
-    return view('saldo');
-});
 
-Route::get('/home', function () {
-    return view('home');
-});
+Route::get('home', [HomeController::class, 'index'])->name('home');
+Route::get('/ceksaldo', 'App\Http\Controllers\HomeController@saldoshow')->name('ceksaldo');
+//Route::get('/profile', 'ProfileController@show')->name('profile');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::group(['middleware' => 'guest'], function () {
+//     Route::get('/login', 'App\Http\Controllers\LoginController@showLoginForm')->name('login');
+//     Route::post('/login', 'App\Http\Controllers\LoginController@login');
+    
+//     Route::get('/home', function () {
+//     return view('home');
+//     });
+//     Route::get('/saldo', function () {
+//     return view('saldo');
+//     });
+// });
+// // Route::get('/login', function () {
+// //     return view('login');
+// // });
+
+
